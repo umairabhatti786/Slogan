@@ -1,6 +1,7 @@
 import { Text } from 'react-native'
 import { colors } from '../../utils/colors'
 import { verticalScale } from 'react-native-size-matters'
+import { font } from '../../utils/font'
 
 type Props = {
     color?: string,
@@ -22,9 +23,9 @@ const CustomText = ({ color, size, fontFam, text, style, lineHeight,numberOfLine
             style={[
                 {
                     color: color || colors.black,
-                    fontSize: verticalScale(size || 10),
+                    fontSize: size|| 12,
                     fontWeight: fontWeight ||"500",
-                    fontFamily: fontFam || "Poppins-Regular",
+                    fontFamily: fontFam || font.regular,
                     textDecorationLine:textDecorationLine,
                 
                     

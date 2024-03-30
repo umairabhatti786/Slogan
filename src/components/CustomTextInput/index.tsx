@@ -5,6 +5,7 @@ import { windowWidth } from "../../utils/Dimensions";
 import DropDownPicker from "react-native-dropdown-picker";
 import { images } from "../../assets/images";
 import { verticalScale } from "react-native-size-matters";
+import { font } from "../../utils/font";
 type Props = {
   label?: string;
   placeholder?: string;
@@ -100,7 +101,6 @@ const CustomTextInput = ({
       <View style={{ flexDirection: "row" }}>
         <CustomText
           fontWeight={"500"}
-          fontFam="Poppins-Medium"
           size={labelSize|| 13}
           style={{ marginBottom: verticalScale(5) }}
           text={label}
@@ -140,46 +140,16 @@ const CustomTextInput = ({
           </View>
         )}
         <View style={{ flex: 1 }}>
-          {dropdown ? (
-            <DropDownPicker
-              zIndex={zIndex}
-              style={{
-                width: windowWidth / 1.1,
-                marginTop: 4,
-                alignSelf: "center",
-                backgroundColor: "transparent",
-                borderColor: "transparent",
-              }}
-              dropDownContainerStyle={{
-                width: windowWidth / 1.1,
-                alignSelf: "center",
-                borderColor: colors.black,
-                opacity:1,
-                backgroundColor: colors.primary,
-              }}
-              open={open}
-              
-              disabled={disabled}
-              onOpen={onOpen}
-              onClose={onClose}
-              value={dropdownValue}
-              items={items}
-              setOpen={setOpen}
-              setValue={setDropdownValue}
-              setItems={setItems}
-              textStyle={{ color: colors.white,fontSize:15 }}
-              ArrowDownIconComponent={CustomArrowIcon}
-            />
-          ) : (
+        
             <TextInput
               value={value}
               editable={editable}
               style={{
-                fontSize: verticalScale(14),
+                fontSize:16,
                 width: windowWidth / 1.2,
                 alignItems:"center",
                 // paddingTop:20,
-                fontFamily:"Poppins-Regular",
+                fontFamily:font.regular,
                 fontWeight: fontWeight,
                 color: color || colors.grey400,
                 ...(isCenter && { alignSelf: "center" }),
@@ -194,25 +164,9 @@ const CustomTextInput = ({
               onBlur={onBlur}
               autoCapitalize="none"
             />
-          )}
+       
         </View>
-        {source && (
-          <TouchableOpacity
-            onPress={onShowPassword}
-            activeOpacity={0.6}
-            disabled={!onShowPassword}
-            style={{ justifyContent: "center", alignItems: "center" }}
-          >
-            <Image
-              source={source}
-              style={{
-                width: 22,
-                height: 22,
-              }}
-              resizeMode={"contain"}
-            />
-          </TouchableOpacity>
-        )}
+        
       </View>
     </View>
   );
