@@ -101,8 +101,8 @@ const CustomTextInput = ({
       <View style={{ flexDirection: "row" }}>
         <CustomText
           fontWeight={"500"}
-          size={labelSize|| 13}
-          style={{ marginBottom: verticalScale(5) }}
+          size={labelSize|| 16}
+          style={{ marginBottom: verticalScale(8) }}
           text={label}
           color={colors.white}
         />
@@ -113,11 +113,11 @@ const CustomTextInput = ({
           flexDirection: "row",
           justifyContent: "space-between",
           paddingHorizontal: 10,
-         height: verticalScale(height || 49),
+         height: verticalScale(height || 46),
 
           alignItems:"center",
           borderRadius: 10,
-          backgroundColor: colors.primary,
+          backgroundColor: colors.grey,
         }}
       >
         {leftSource && (
@@ -145,13 +145,13 @@ const CustomTextInput = ({
               value={value}
               editable={editable}
               style={{
-                fontSize:16,
+                fontSize:17,
                 width: windowWidth / 1.2,
                 alignItems:"center",
                 // paddingTop:20,
                 fontFamily:font.regular,
                 fontWeight: fontWeight,
-                color: color || colors.grey400,
+                color: color || colors.white,
                 ...(isCenter && { alignSelf: "center" }),
               }}
               placeholder={placeholder}

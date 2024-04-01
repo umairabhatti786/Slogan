@@ -9,11 +9,14 @@ import {
   FlatList,
   Image,
   ImageBackground,
-  StatusBar
+  StatusBar,
+  KeyboardAvoidingView,
+  ScrollView
 } from "react-native";
 import { appStyles } from "../../../utils/AppStyles";
 
 import { useNavigation } from "@react-navigation/native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { scale, verticalScale } from "react-native-size-matters";
 import { images } from "../../../assets/images";
@@ -23,12 +26,24 @@ import CustomButton from "../../../components/CustomButton";
 import { colors } from "../../../utils/colors";
 import LinearGradient from "react-native-linear-gradient";
 import CustomText from "../../../components/CustomText";
+import CustomTextInput from "../../../components/CustomTextInput";
 
-const OnBoarding = () => {
+const Signup = () => {
   const navigation: any = useNavigation();
+
+  const [values,setValues]=useState({
+    pseudo:"",
+    email:"",
+    password:"",
+    confirmPassword:""
+
+
+  })
 
   return (
     <>
+       
+
        <StatusBar
         animated={true}
         backgroundColor="#212D3D"
@@ -37,6 +52,10 @@ const OnBoarding = () => {
      <LinearGradient 
     start={{x: 0, y: 0}} end={{x: 0, y: 0.9}} colors={['#022726', '#022726', '#212D3D']}
     style={appStyles.main}>
+           <ScrollView
+                  style={{ flex: 1 }}
+          >
+
       <SafeAreaView style={{ flex: 1, padding: scale(20) }}>
         <Spacer height={verticalScale(10)} />
         <View style={appStyles.rowjustify}>
@@ -60,27 +79,55 @@ const OnBoarding = () => {
         fontWeight="100"
         size={30}
         />
-        <View style={{flex:1,alignItems:"center",justifyContent:"center"}}>  
+        <View style={{flex:1,}}>  
 
-        <Image style={{ width: windowWidth/2, height: windowHeight/3,alignSelf:"center" }}
-        resizeMode="contain"
-         source={images.house} />
+        <CustomTextInput
+              label="Pseudo"
+              value={values.pseudo}
+              onChangeText={(txt: string) => {
+                setValues({ ...values, pseudo: txt });
+              }}
+              placeholder=""
+            />
+            <Spacer height={verticalScale(15)}/>
+             <CustomTextInput
+              label="Email"
+              value={values.email}
+              onChangeText={(txt: string) => {
+                setValues({ ...values, email: txt });
+              }}
+              placeholder=""
+            />
+              <Spacer height={verticalScale(15)}/>
+             <CustomTextInput
+              label="Password"
+              value={values.password}
+              onChangeText={(txt: string) => {
+                setValues({ ...values, password: txt });
+              }}
+              placeholder=""
+            />
+                   <Spacer height={verticalScale(15)}/>
+             <CustomTextInput
+              label="Confirm your Password"
+              value={values.confirmPassword}
+              onChangeText={(txt: string) => {
+                setValues({ ...values, confirmPassword: txt });
+              }}
+              placeholder=""
+            />
 
         </View>
-        <CustomText
-        text={"Inscription"}
-        color={colors.secondary}
-        fontWeight="400"
-        style={{textAlign:"center",marginBottom:verticalScale(20)}}
-        size={20}
-        />
+
+        <Spacer height={verticalScale(60)}/>
+      
 
       
 
         <CustomButton
           text="S’inscrire"
           width={"100%"}
-          onPress={() => navigation.navigate("Signup")}
+          onPress={() => navigation.navigate("BottomTab")}
 
           // fontWeight={"500"}
           textColor={colors.white}
@@ -89,13 +136,16 @@ const OnBoarding = () => {
         <Spacer height={verticalScale(15)} />
         
       </SafeAreaView>
+      </ScrollView>
+
     </LinearGradient>
+
  </>
    
   );
 };
 
-export default OnBoarding;
+export default Signup;
 
 const  styles=StyleSheet.create({
   line:{

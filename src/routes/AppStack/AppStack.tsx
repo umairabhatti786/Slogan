@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import OnBoarding from "../../screens/auth/OnBoarding";
+import Signup from "../../screens/auth/Signup";
+import BottomTab from "../BottomTabs";
 
 
 const AppStack = () => {
@@ -14,6 +16,7 @@ const AppStack = () => {
     //  screenOptions={{ headerShown: false }
       screenOptions={{
         headerShown: false,
+      
         cardStyleInterpolator: ({ current: { progress } }) => {
           return {
             cardStyle: {
@@ -25,6 +28,9 @@ const AppStack = () => {
     >
             
             <Stack.Screen name={"OnBoarding"} component={OnBoarding} />
+            <Stack.Screen name={"Signup"} component={Signup} />
+            <Stack.Screen name={"BottomTab"} component={BottomTab} />
+
 
 
 

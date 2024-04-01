@@ -54,8 +54,8 @@ const CustomButton = ({
       style={{
         ...style,
         width: width,
-        height: verticalScale(height||48),
-        backgroundColor: bgColor || colors.primary,
+        height: verticalScale(height||46),
+        backgroundColor: bgColor || colors.secondary,
         justifyContent: "center",
         alignItems: "center",
         paddingHorizontal:paddingHorizontal,
@@ -75,7 +75,7 @@ const CustomButton = ({
           text={text}
           color={textColor || colors.white}
           fontWeight={ fontWeight ||"600"}
-          size={size || 20}
+          size={size || 22}
           // fontFam={fontFam ||"Poppins-Medium"}
         />
       )}
