@@ -1,6 +1,6 @@
 export const images = {
   house: require("../images/house.png"),
-  hoprofileDefault: require("../images/profile-default.png"),
+  profileDefault: require("../images/profile-default.png"),
   laptop: require("../images/laptop.png"),
   defBackground2: require("../images/defBackground2.png"),
   defBackground1: require("../images/defBackground1.png"),
