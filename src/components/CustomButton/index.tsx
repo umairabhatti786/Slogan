@@ -24,6 +24,7 @@ type Props = {
   paddingHorizontal?:any
   fontWeight?:any
   borderWidth?:number
+  children?:any
 };
 
 const CustomButton = ({
@@ -44,7 +45,8 @@ const CustomButton = ({
   isLoading,
   paddingHorizontal,
   fontWeight,
-  borderWidth
+  borderWidth,
+  children
 }: Props) => {
   return (
     <TouchableOpacity
@@ -62,6 +64,7 @@ const CustomButton = ({
         borderRadius: scale(borderRadius || 8),
         borderWidth:borderWidth ,
         borderColor: borderColor ,
+        flexDirection:"row"
         // paddingTop:5
       }}
     >
@@ -71,13 +74,19 @@ const CustomButton = ({
 
         </>
       ) : (
-        <CustomText
+        <View style={appStyles.row}>
+            <CustomText
           text={text}
           color={textColor || colors.white}
           fontWeight={ fontWeight ||"600"}
           size={size || 22}
           // fontFam={fontFam ||"Poppins-Medium"}
         />
+              {children}
+
+
+        </View>
+      
       )}
     </TouchableOpacity>
   );

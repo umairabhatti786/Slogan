@@ -7,14 +7,18 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Explore from "../../screens/main/Explore";
 import Community from "../../screens/main/Community";
-import Favoris from "../../screens/main/Favoris";
 import Profile from "../../screens/main/Profile";
 import { colors } from "../../utils/colors";
 import CustomText from "../../components/CustomText";
+import ExploreStack from "../ExploreStack";
+import UserProfile from "../../screens/main/UserProfile/indx";
+import ProfileStack from "../ProfileStack";
+import Gestion from "../../screens/main/Gestion";
+import GestionStack from "../GestionStack";
+import CommunityStack from "../CommunityStack";
 
 const BottomTab = ({ navigation }: any) => {
   const Bottom = createBottomTabNavigator();
-
 
   // useEffect()
 
@@ -23,42 +27,29 @@ const BottomTab = ({ navigation }: any) => {
       initialRouteName="Home"
       screenOptions={({ route }) => ({
         tabBarHideOnKeyboard: true,
-             tabBarShowLabel: false,
+        tabBarShowLabel: false,
 
         // tabBarColor: ({focused, size, color}) => {},
         // tabBarStyle:()=>{innerHeight:1000},
         tabBarStyle: {
           backgroundColor: colors.primary,
-              justifyContent: "center",
-              alignItems: "center",
-              borderTopWidth: -1,
-              display:"flex",
-              paddingTop: 8,
-              height: 75,
-              borderTopLeftRadius:20,
-              borderTopRightRadius:20,
+          justifyContent: "center",
+          alignItems: "center",
+          borderTopWidth: -1,
+          display: "flex",
+          paddingTop: 8,
+          height: 75,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
           // display: route.name === "Home" ? "none" : "flex",
         },
         headerShown: false,
-       
       })}
-      // screenOptions= {{
-      //   tabBarHideOnKeyboard: true,
 
-      //   tabBarShowLabel: false,
-      //   tabBarStyle: {
-      //     backgroundColor: "black",
-      //     justifyContent: "center",
-      //     alignItems: "center",
-      //     borderTopWidth: -1,
-      //     paddingTop: 8,
-      //     height: 55,
-      //   },
-      // }}
     >
       <Bottom.Screen
         name="Explore"
-        component={Explore}
+        component={ExploreStack}
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => {
@@ -68,16 +59,17 @@ const BottomTab = ({ navigation }: any) => {
                   ...style?.itemStyle,
                 }}
               >
-              <Image
-                  source={ images.search}
-                  style={{ height: 20, width: 20,tintColor:colors.secondary }}
+                <Image
+                  source={images.search}
+                  style={{ height: 20, width: 20, tintColor: colors.secondary }}
+                  resizeMode="contain"
                 />
-                 <CustomText
-        text={"Explore"}
-        color={ focused? colors.secondary:colors.grey100}
-        fontWeight="100"
-        size={12}
-        />
+                <CustomText
+                  text={"Explore"}
+                  color={focused ? colors.secondary : colors.grey100}
+                  fontWeight="100"
+                  size={12}
+                />
               </View>
             );
           },
@@ -85,86 +77,87 @@ const BottomTab = ({ navigation }: any) => {
       />
 
       <Bottom.Screen
-        name="Community"
-        component={Community}
+        name="CommunityStack"
+        component={CommunityStack}
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => {
             return (
               <View
-              style={{
-                ...style?.itemStyle,
-              }}
-            >
-            <Image
-                source={ images.search}
-                style={{ height: 20, width: 20,tintColor:colors.secondary }}
-              />
-               <CustomText
-      text={"Community"}
-      color={ focused? colors.secondary:colors.grey100}
-      fontWeight="100"
-      size={12}
-      />
-            </View>
+                style={{
+                  ...style?.itemStyle,
+                }}
+              >
+                <Image
+                  source={images.watchlist}
+                  style={{ height: 20, width: 20, tintColor: colors.secondary }}
+                  resizeMode="contain"
+                />
+                <CustomText
+                  text={"Community"}
+                  color={focused ? colors.secondary : colors.grey100}
+                  fontWeight="100"
+                  size={12}
+                />
+              </View>
             );
           },
         }}
       />
       <Bottom.Screen
-        name="Favoris"
+        name="GestionStack"
         // component={AddStatus}
-        component={Favoris}
-
+        component={GestionStack}
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => {
             return (
               <View
-              style={{
-                ...style?.itemStyle,
-              }}
-            >
-            <Image
-                source={ images.search}
-                style={{ height: 20, width: 20,tintColor:colors.secondary }}
-              />
-               <CustomText
-      text={"Favoris"}
-      color={ focused? colors.secondary:colors.grey100}
-      fontWeight="100"
-      size={12}
-      />
-            </View>
+                style={{
+                  ...style?.itemStyle,
+                }}
+              >
+                <Image
+                  source={images.watchlist}
+                  style={{ height: 20, width: 20, tintColor: colors.secondary }}
+                  resizeMode="contain"
+                />
+                <CustomText
+                  text={"Gestion"}
+                  color={focused ? colors.secondary : colors.grey100}
+                  fontWeight="100"
+                  size={12}
+                />
+              </View>
             );
           },
         }}
       />
 
-     
       <Bottom.Screen
         name="Profile"
-        component={Profile}
+        component={ProfileStack}
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => {
             return (
               <View
-              style={{
-                ...style?.itemStyle,
-              }}
-            >
-            <Image
-                source={ images.search}
-                style={{ height: 20, width: 20,tintColor:colors.secondary }}
-              />
-               <CustomText
-      text={"Profil"}
-      color={ focused? colors.secondary:colors.grey100}
-      fontWeight="100"
-      size={12}
-      />
-            </View>
+                style={{
+                  ...style?.itemStyle,
+                }}
+              >
+                <Image
+                  source={images.user}
+                  style={{ height: 20, width: 20, tintColor: colors.secondary }}
+                  resizeMode="contain"
+                />
+                <CustomText
+                  text={"Profil"}
+                  color={focused ? colors.secondary : colors.grey100}
+                  fontWeight="100"
+                  size={12}
+                />
+              </View>
             );
           },
         }}

@@ -10,6 +10,8 @@ import {
   Image,
   ImageBackground,
   StatusBar,
+  TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { scale, verticalScale } from "react-native-size-matters";
@@ -21,10 +23,9 @@ import CustomSearch from "../../../components/CustomSearch";
 import { appStyles } from "../../../utils/AppStyles";
 import CustomButton from "../../../components/CustomButton";
 import NextContainer from "../../../components/NextContainer";
-import NewsCard from "./NewsCard";
 import CreationCard from "../../../components/CreationCard";
 
-const Explore = () => {
+const Gestion = () => {
   const navigation: any = useNavigation();
   const [activeFilter, setActiveFilter] = useState(0);
 
@@ -32,7 +33,7 @@ const Explore = () => {
     <>
       <View style={{ backgroundColor: colors.white, flex: 1 }}>
         <ImageBackground
-          style={{ width: "100%", height: verticalScale(250) }}
+          style={{ width: "100%", height: verticalScale(90) }}
           source={images.defBackground2}
         >
           <View
@@ -40,6 +41,7 @@ const Explore = () => {
               flex: 1,
               paddingHorizontal: scale(20),
               paddingTop: verticalScale(20),
+              flexDirection: "row",
             }}
           >
             <View
@@ -48,6 +50,7 @@ const Explore = () => {
                 height: scale(45),
                 borderRadius: scale(50),
                 overflow: "hidden",
+                backgroundColor: "red",
               }}
             >
               <Image
@@ -55,28 +58,20 @@ const Explore = () => {
                 source={images.profileDefault}
               />
             </View>
-            <Spacer height={20} />
-            <View style={{ flex: 1, justifyContent: "space-between" }}>
-              <View>
-                <CustomText
-                  text={"Bonjour Name,"}
-                  color={colors.white}
-                  size={16}
-                />
-                <CustomText
-                  text={"Find your ...."}
-                  color={colors.white}
-                  fontWeight="100"
-                  size={28}
-                />
-              </View>
-              <CustomSearch />
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "space-between",
+                marginLeft: scale(10),
+                alignSelf: "flex-end",
+              }}
+            >
               <View style={{ ...appStyles.row, alignItems: "flex-end" }}>
-                {["Acceuil", "Other", "Other"].map((item, index) => {
+                {["Acceuil", "Goods", "Services"].map((item, index) => {
                   return (
                     <CustomButton
                       text={item}
-                      height={37}
+                      height={35}
                       onPress={() => setActiveFilter(index)}
                       bgColor={
                         activeFilter == index ? colors.secondary : "transparent"
@@ -97,75 +92,93 @@ const Explore = () => {
             </View>
           </View>
         </ImageBackground>
-        <View
+        <ScrollView
           style={{
             paddingHorizontal: scale(20),
-            paddingTop: verticalScale(20),
+            paddingTop: verticalScale(30),
           }}
         >
-          <NextContainer />
-        </View>
-        <View>
+          <View
+            style={{ ...appStyles.rowjustify, marginBottom: verticalScale(20) }}
+          >
+            <CustomText color={colors.black100} size={23} text={"Annonces"} />
+
+            <View style={appStyles.row}>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("GoodService")}
+                style={{
+                  ...styles.boxContainer,
+                  backgroundColor: colors.secondary,
+                }}
+              >
+                <Image
+                  style={{ width: scale(30), height: scale(30) }}
+                  source={images.plus}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+
+              <Spacer width={scale(15)} />
+              <TouchableOpacity
+                style={{ ...styles.boxContainer, backgroundColor: colors.red }}
+              >
+                <Image
+                  style={{ width: scale(30), height: scale(30) }}
+                  source={images.negative}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+
           <FlatList
-            data={[1, 2]}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            // style={{marginRight:10}}
-
-            contentContainerStyle={{
-              gap: 20,
-              paddingHorizontal: 20,
-            }}
-            renderItem={({ item, index }) => {
-              return <NewsCard />;
-            }}
-            keyExtractor={(item, index) => index.toString()}
-          />
-        </View>
-
-        <View
-          style={{
-            paddingHorizontal: scale(20),
-            paddingVertical: verticalScale(10),
-          }}
-        >
-          <NextContainer txt={"Last Creation"} />
-        </View>
-        <FlatList
-          data={[1, 2]}
-          numColumns={2}
+          data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
           showsVerticalScrollIndicator={false}
+          style={{paddingBottom:verticalScale(50)}}
           // style={{marginRight:10}}
 
           contentContainerStyle={{
             gap: 20,
 
-            paddingHorizontal: 20,
           }}
           renderItem={({ item, index }) => {
             return (
               <View style={{ paddingRight: scale(10) }}>
                 <CreationCard
-                  onPress={() => navigation.navigate("GoodDetail")}
-                />
+                  img={images.defLaptop}
+                  imgWidth={140}
+                  imgHeight={90}
+                  isRight={true}
+                  textSize={13}
+                  onPress={()=>navigation.navigate("GoodService",{validate:true})}
+                  />
               </View>
             );
           }}
           keyExtractor={(item, index) => index.toString()}
         />
+        </ScrollView>
 
-       
+      
+      
       </View>
     </>
   );
 };
 
-export default Explore;
+export default Gestion;
 
 const styles = StyleSheet.create({
   line: {
     width: "32%",
     height: 3,
     borderRadius: 30,
+  },
+  boxContainer: {
+    width: 45,
+    height: 45,
+    borderRadius: 7,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -2,6 +2,7 @@ import { BlurView, VibrancyView } from '@react-native-community/blur';
 import React from 'react';
 import { ScrollView, Text, useWindowDimensions, SafeAreaView, View, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
 import Modal from 'react-native-modal';
+import { colors } from '../../utils/colors';
 
 interface Props {
     isModalVisible?: boolean;
@@ -19,7 +20,7 @@ const CustomModal: React.FC<Props> = ({ isModalVisible, setModalVisible, childre
         <Modal
             style={{...styles.modalContainer,
                 justifyContent: justifyContent ||"flex-start",
-                paddingTop:paddingTop || "50%"
+                // paddingTop:paddingTop || "0%"
             }}
             animationIn='slideInUp'
             animationOut='slideOutDown'
@@ -27,12 +28,12 @@ const CustomModal: React.FC<Props> = ({ isModalVisible, setModalVisible, childre
             isVisible={isModalVisible}
             onBackButtonPress={() => setModalVisible?.(false)}
             onBackdropPress={() => setModalVisible?.(false)}
-            backdropColor='transparent'
+            backdropColor={colors.black}
             customBackdrop={
 
                
                     <Pressable
-                        style={{ height: "100%", width: "100%" }}
+                        style={{ height: "100%", width: "100%",backgroundColor:colors.black }}
                         onPress={
                             () =>
                                 setModalVisible?.(false)
